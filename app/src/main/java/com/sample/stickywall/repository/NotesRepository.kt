@@ -11,5 +11,6 @@ class NotesRepository(private val appDatabase: AppDatabase) {
     suspend fun insertNote(note: Notes) = appDatabase.notesDao().insertNote(note)
 
     suspend fun deleteNote(note: Notes) = appDatabase.notesDao().deleteNote(note)
+    suspend fun updateNote(notes: Notes) = appDatabase.notesDao().updateNote(notes)
 
 }

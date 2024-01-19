@@ -18,6 +18,7 @@ import com.sample.stickywall.repository.NotesRepository
 class AddNoteFragment : Fragment(R.layout.fragment_add_note) {
     private lateinit var binding: FragmentAddNoteBinding
     private lateinit var viewModel: AddNoteViewModel
+    private var noteId = 0
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentAddNoteBinding.bind(view)
         super.onViewCreated(view, savedInstanceState)
@@ -27,23 +28,37 @@ class AddNoteFragment : Fragment(R.layout.fragment_add_note) {
     }
 
     private fun init() {
+        noteId = arguments?.getInt("id") ?: 0
         binding.editTextTitle.setText(arguments?.getString("title","") ?: "")
         binding.editTextNotes.setText(arguments?.getString("note","") ?: "")
         binding.editTextNotes.requestFocus()
         binding.buttonSave.setOnClickListener {
             val title = binding.editTextTitle.text.toString()
             val description = binding.editTextNotes.text.toString()
-            if(title.isBlank() || description.isBlank()){
-                Snackbar.make(binding.root,"Please fill details.....",Snackbar.LENGTH_SHORT).show()
-            }else{
-                viewModel.insertNote(
-                    Notes(
-                        title = title,
-                        note = description
+
+            if (title.isBlank() || description.isBlank()) {
+                Snackbar.make(binding.root, "Please fill details.....", Snackbar.LENGTH_SHORT)
+                    .show()
+            } else {
+                if (noteId != 0) {
+                    viewModel.updateNote(
+                        Notes(
+                            id = noteId,
+                            title = title,
+                            note = description
+                        )
                     )
-                )
+                } else {
+                    viewModel.insertNote(
+                        Notes(
+                            title = title,
+                            note = description
+                        )
+                    )
+                }
                 findNavController().popBackStack()
             }
+
 
         }
     }

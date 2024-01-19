@@ -13,5 +13,9 @@ class AddNoteViewModel(private val notesRepository: NotesRepository):ViewModel()
         notesRepository.deleteNote(notes)
         notesRepository.insertNote(notes)
     }
+
+    fun updateNote(notes: Notes)= viewModelScope.launch(Dispatchers.IO){
+        notesRepository.updateNote(notes)
+    }
 }
 
