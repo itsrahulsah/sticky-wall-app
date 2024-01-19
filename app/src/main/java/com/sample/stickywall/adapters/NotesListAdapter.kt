@@ -32,7 +32,7 @@ class NotesListAdapter(
                 binding.titleTv.text = note.title
                 binding.notesTextView.text = note.note
                 binding.addButton.visibility = View.GONE
-                binding.root.setBackgroundResource(background(position))
+                binding.root.setBackgroundResource(background(note.id))
                 binding.root.setOnLongClickListener { onLongClick(note) }
                 binding.root.setOnClickListener { onClick.invoke(note) }
             }
@@ -41,7 +41,7 @@ class NotesListAdapter(
                 binding.addButton.visibility = View.VISIBLE
                 binding.titleTv.visibility = View.GONE
                 binding.notesTextView.visibility = View.GONE
-                binding.root.setBackgroundResource(R.drawable.transprent)
+                binding.root.setBackgroundResource(R.drawable.transparent)
                 binding.addButton.setOnClickListener { onClick.invoke(null) }
             }
         }

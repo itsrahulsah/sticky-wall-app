@@ -39,6 +39,7 @@ class HomeFragment : Fragment() {
         adapter = NotesListAdapter({note ->
                 if(note != null){
                     val bundle = Bundle().also {
+                        it.putInt("id",note.id)
                         it.putString("title",note.title)
                         it.putString("note",note.note)
                     }

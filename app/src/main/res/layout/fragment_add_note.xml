@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="16dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.AddNoteFragment">
 
@@ -15,8 +16,10 @@
        android:textSize="24sp"
        android:layout_marginHorizontal="16dp"
        android:hint="@string/title"
-       android:background="@drawable/transprent"
-       app:layout_constraintTop_toTopOf="parent"/>
+       android:background="@drawable/transparent"
+       app:layout_constraintTop_toTopOf="parent"
+       android:importantForAutofill="no"
+       android:inputType="text" />
 
     <EditText
         android:id="@+id/edit_Text_Notes"
@@ -26,16 +29,18 @@
         android:inputType="textMultiLine"
         android:hint="@string/notes"
         android:padding="5dp"
+        android:layout_marginTop="16dp"
         android:layout_marginHorizontal="16dp"
-        android:background="@drawable/transprent"
+        android:background="@drawable/transparent"
         app:layout_constraintTop_toBottomOf="@id/edit_Text_Title"
-        app:layout_constraintBottom_toTopOf="@id/buttonSave" />
+        app:layout_constraintBottom_toTopOf="@id/buttonSave"
+        android:autofillHints="no" />
 
     <Button
         android:id="@+id/buttonSave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/save"
-        android:layout_marginHorizontal="16dp"
+        android:layout_marginHorizontal="20dp"
         app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
